@@ -41,10 +41,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-    // 1. view resolver dostaje np "users" z controllera
-    // 2. dokleja prefix i suffix = /WEB-INF/users.jsp
 
-    //to jesk metoda konfiguracyjna wysylanie maili pod kontem Gmail
+
     @Bean
     public JavaMailSender javaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -57,8 +55,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return mailSender;
     }
 
-    //!!!!!!!!!!!!!!!!
-    //tu bedzie obiekt klasy zwiazany ze spamerka
     @Bean
     public AdvService getAdvService() {
         return new AdvService();
