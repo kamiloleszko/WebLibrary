@@ -41,19 +41,19 @@ public class MainController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    //jest to alternatywny sposob dla uzycia (Model model)
+   
     public String register(@ModelAttribute User model){
         try {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(SecurityConfig.PASSWORD_STRENGHT);
             String encodedPassword = encoder.encode(model.getPassword());
-            model.setPassword(encodedPassword); // haslo niezaszyfrowane zamieniam na zaszyfrowane
+            model.setPassword(encodedPassword); 
             userService.save(model);
         }catch (Exception e){
             e.printStackTrace();
             e.getMessage();
             return "redirect:/register";
         }
-        //w konstruktorze daje adress ktory bedzie uzytkownik widdzial jak odhierze wiadomosc a fizyczny adres z ktorego zostanie to wyslane zostal adefiniowany w configu.
+        
         emailService.sendEmail("biblioteka@onet.pl", model.getEmail(),"Welcome to out library", "Registration completed");
         return "redirect:/login";
     }
