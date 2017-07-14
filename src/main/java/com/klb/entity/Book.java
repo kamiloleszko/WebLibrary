@@ -16,7 +16,7 @@ public class Book extends BaseEntity{
 
     @NotNull
     @Column (name = "author")
-    @Size (min = 3, max = 255, message = "Podaj dlugosc od {min} do {max}" ) //ostatnie to kontrolka zwiazana z frontem gdzie uzytkownik bedize podawal autora
+    @Size (min = 3, max = 255, message = "Podaj dlugosc od {min} do {max}" ) 
     private String author;
 
     @NotNull
@@ -24,10 +24,10 @@ public class Book extends BaseEntity{
     @Size (min = 3, max = 255, message = "Podaj dlugosc od {min} do {max}" )
     private String title;
 
-    @Min(0) //jest to potrzebne zeby uzytkownik nei mogl wypozyczac ksiazek w nieskonczonosc
+    @Min(0)  
     private Integer available;
 
-    //pusty konstruktor jest obowiazkowy
+    
     public Book (){
     }
 
