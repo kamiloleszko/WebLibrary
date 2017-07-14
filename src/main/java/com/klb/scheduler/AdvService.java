@@ -23,8 +23,8 @@ public class AdvService {
     @Autowired
     private EmailService emailService;
 
-    //zeby metoda odpalala sie co jakis czas
-    @Scheduled(fixedDelay = 10000) // co ile milisekund sie ta funkcja wykona
+    
+    @Scheduled(fixedDelay = 10000) 
     public void sendAdv(){
         List<User> users = userService.findAll();
 
