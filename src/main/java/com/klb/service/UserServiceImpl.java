@@ -46,12 +46,12 @@ public class UserServiceImpl implements UserService {
         return userDao.findOne(id);
     }
 
-    //ta metoda bedzie wykorzystywana przez springsecurity zeby spring np nie pozwolil na to zeby zwykly uzytkownik nie usunal uzytkownika
+    
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userDao.findByEmail(email);
         if (user == null){
-            throw  new UsernameNotFoundException(String.format("%s nie istnieje w bazie danych " + email)); //to jest juz gotowa klasa w Javie do rzucania takeigo wyjatku
+            throw  new UsernameNotFoundException(String.format("%s nie istnieje w bazie danych " + email)); 
         }
 
         List<GrantedAuthority> authorities = new ArrayList<>();
