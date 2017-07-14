@@ -11,21 +11,21 @@ import javax.persistence.*;
 @Table (name = "users")
 public class User extends BaseEntity {
 
-    @Column (name = "first_name", nullable = false, length = 255) //tutaj uzywam nullable = false zamiast adnotacji @NotNull - to jest to samo
+    @Column (name = "first_name", nullable = false, length = 255) 
     private String firstName;
 
     @Column (name = "last_name", nullable =  false, length = 255)
     private String lastName;
 
-    //email bedzie loginem uzytkownika
+    
     @Column (name = "email", nullable = false, unique = true)
-    @Email (message = "incorrect email format") //bedzie sprawdzac czy wartosc zawiera w sobie "@"
+    @Email (message = "incorrect email format") 
     private String email;
 
-    @Column (name = "password", nullable = false) //ono bedzie szyfrowane potem w SpringSecurity
+    @Column (name = "password", nullable = false) 
     private String password;
 
-    @Enumerated (EnumType.STRING) //zeby Hibernate przetworzyl enuma bo samego Enuma nie moze byc w bazie danych
+    @Enumerated (EnumType.STRING) 
     @Column (name = "role", nullable = false)
     private Role role = Role.CUSTOMER;
 
