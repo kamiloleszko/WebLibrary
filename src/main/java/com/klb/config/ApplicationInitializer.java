@@ -10,10 +10,10 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
-//ta klasa to jest konfiguracja w jakis sposob aplikacja webowa ma zostac uruchomiona
+
 public class ApplicationInitializer implements WebApplicationInitializer {
 
-    //definiowane w jaki sposob aplikacja ma byc uruchomiona
+
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 
@@ -34,7 +34,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         servletContext.addFilter("characterEncodingFilter", characterEncodingFilter)
                 .addMappingForUrlPatterns(null, true, "/*");
 
-        //mowimy ze wszystkie beany w aplikacji sa zwiazane ze spring security
+
         DelegatingFilterProxy delegatingFilterProxy = new DelegatingFilterProxy();
         servletContext.addFilter("springSecurityFilterChain", delegatingFilterProxy)
                 .addMappingForUrlPatterns(null, true, "/*");
