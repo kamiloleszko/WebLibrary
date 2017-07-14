@@ -14,7 +14,7 @@ public class Rent extends BaseEntity{
     private Date createdDate;
 
     @ManyToOne (fetch = FetchType.EAGER)
-    @JoinColumn (name = "user_id", nullable = false) // jak bedize sie nazywac klucz obcy w tabeli zlaczeniowej
+    @JoinColumn (name = "user_id", nullable = false) 
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -22,8 +22,8 @@ public class Rent extends BaseEntity{
     private Book book;
 
 
-   // public enum Status {IN_PROGRESS, COMPLETED} //moge zdefiniowac enuma tez tutaj, nie musze osobnego pliku robic. Najczesciej sie robi jednak tradycyjnie w osobnym pliku
-//    tutaj odwoluje sie do neigo Rent.Status.xxx
+
+
 
     @Enumerated (EnumType.STRING)
     @Column (name = "status")
