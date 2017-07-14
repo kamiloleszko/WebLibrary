@@ -35,11 +35,11 @@ public class RentController {
     private UserService userService;
 
     //obiekt loggera
-    private final static Logger logger = Logger.getLogger(RentController.class.getName()); //  tutaj zwracam nazwe klasy z ktorej nastepuje logowanie. Jest to jednakze stary sposob na logowanie
+    private final static Logger logger = Logger.getLogger(RentController.class.getName()); 
 
 
     @RequestMapping (value = "/rents", method = RequestMethod.GET)
-    // bede chcial uzyskac jeszcze login zalogowanego uzytkownika - Principal klasa
+    
     public String getRentsPage (Model model, Principal principal){
         String email = principal.getName();
         User user = userService.findByEmail(email);
@@ -55,12 +55,12 @@ public class RentController {
         return "rents";
     }
 
-    //metoda dodaje wypozyczenie ksiazki o id = bookId, zalogowanego uzytkownika
+   
     @RequestMapping (value = "/rent/book/{bookId}", method = RequestMethod.GET)
     public String createRent (@PathVariable Long bookId, Principal principal){
 
         logger.log(Level.INFO, String.format("Wykonywanie moteody createRent dla bookId=%d", bookId));
-        //w zaleznosci od koniguracji log4j komunikat trafi w odpowiednie miejsce.
+        
         System.out.println(String.format("Wykonywanie moteody createRent dla bookId=%d", bookId));
 
         String email = principal.getName();
