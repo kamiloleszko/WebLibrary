@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-    //obiekt do wysylania maila
+    
     @Autowired
     private JavaMailSender mailSender;
 
     @Override
     public void sendEmail(String fromAddress, String toAddress, String subject, String body) {
-        //tworze obiekt maila
+        
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(toAddress);
         message.setFrom(fromAddress);
