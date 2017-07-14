@@ -27,7 +27,7 @@ public class HibernateConfig {
     @Autowired
     private Environment settings;
 
-    @Bean //odnosnik do moch danych odnosnie laczenia sie z baza danych
+    @Bean 
     public DataSource dataSource (){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(settings.getRequiredProperty("jdbc.driver.class.name"));
@@ -38,7 +38,7 @@ public class HibernateConfig {
         return dataSource;
     }
 
-    //teraz jest definicja pozostalych ustawien
+ 
     @Bean
     public EntityManagerFactory entityManagerFactory (){
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -50,27 +50,19 @@ public class HibernateConfig {
         properties.put("hibernate.generate_statistics", settings.getProperty("hibernate.generate_statistics"));
         properties.put("hibernate.hbm2ddl.auto", settings.getProperty("hibernate.hbm2ddl.auto"));
 
-        //glowny obiekt fabryki beanow
-        //potrzebne do mapowiania obiektowo relacyjnego
-        //przekazuje teraz ten obiekt dalej. Jest to glowny obeikt fabryki Beanow
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-        //ten obeikt teraz potrzebuje informacje gdzie leza encje
         factoryBean.setPackagesToScan("com.klb.entity");
-        //teraz potrzebuje walsnie obiekt tego mojego vendorAdaptera
         factoryBean.setJpaVendorAdapter(vendorAdapter);
-        //ustawiam propertisy ktore wczytalem
         factoryBean.setJpaProperties(properties);
-        //potrzebuje obiekt DataSource. JEst to obiekt zwiazany z polaczeniem do bazy danych
         factoryBean.setDataSource(dataSource());
 
-        //to jest teraz opcjonale. Moge zdefiniowac ze produkcja beanow encyjnych bedize mozliwa dopiero jak wszytskie zostana stworzone
         factoryBean.afterPropertiesSet();
 
         return factoryBean.getObject();
     }
 
 
-    // obiekt do obslugi transakcji
+
     @Bean
     public PlatformTransactionManager transactionManager(){
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
